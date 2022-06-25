@@ -1,0 +1,34 @@
+<div class="offcanvas offcanvas-end" data-bs-scroll="true" tabindex="-1" id="offcart" aria-labelledby="offcartlabel">
+
+    <div class="mt-2 offcanvas-header dropdown cart-dropdown" id="offcanvasheader"></div>
+    <div class="offcanvas-body">
+        <table class="table table-cart table-mobile">
+            <thead id="cartitemsoff_tableshead">
+            </thead>
+            <tbody id="cartitemsoff">
+            </tbody>
+        </table>
+
+
+
+
+
+
+    </div>
+    <div class="position-relative">
+        <div class="position-absolute top-100 start-50 translate-middle" style="padding-bottom:160px ;">
+            <table class=" table table-summary">
+                <tbody id="cartpagetotaloff">
+                    <!-- End .summary-total -->
+                </tbody>
+            </table><!-- End .table table-summary -->
+            <span id="cartpagebuttonoff"></span>
+            <!-- <a href="{% url 'Checkout' %}" class="btn btn-outline-primary-2 btn-order btn-block">PROCEED TO
+                CHECKOUT</a> -->
+
+            <a href="{% url 'cart' %}" class="btn btn-outline-dark-2 btn-block mb-3"><span>
+                    CHECK YOUR CART
+                </span><i class="icon-refresh"></i></a>
+        </div>
+    </div><!-- End .summary -->
+</div>

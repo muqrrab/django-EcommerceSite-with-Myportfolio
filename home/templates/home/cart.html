@@ -1,0 +1,95 @@
+{% extends 'home/layout.html' %}
+
+{% load static %}
+{% block content %}
+
+
+
+
+
+<div class="page-header text-center" style="background-image: url('assets/images/page-header-bg.jpg')">
+    <div class="container">
+        <h1 class="page-title">Shopping Cart<span>Shop</span></h1>
+    </div><!-- End .container -->
+</div><!-- End .page-header -->
+
+
+<!-- <h2>h</h2>
+<div class="container">
+    <div class="row">
+        <div class="col-3">
+            <h4>images</h4>
+        </div>
+        <div class="col-9">
+            <div class="row">
+                <div class="col-12">
+                    <h5>name</h5>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-4">price</div>
+                <div class="col-4">quanitty</div>
+                <div class="col-4">total</div>
+            </div>
+        </div>
+    </div>
+</div>
+ -->
+
+
+
+
+
+
+
+
+
+
+
+<div class="page-content mt-2">
+    <div class="cart">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-9">
+                    <table class="table table-cart table-mobile">
+                        <thead>
+                            <tr>
+                                <th>Product</th>
+                                <th>Price</th>
+                                <th>Quantity</th>
+                                <th>Total</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody id="cartitems">
+                        </tbody>
+                    </table><!-- End .table table-wishlist -->
+
+
+                </div><!-- End .col-lg-9 -->
+                <aside class="col-lg-3">
+                    <div class="summary summary-cart">
+                        <h3 class="summary-title">Cart Total</h3><!-- End .summary-title -->
+
+                        <table class="table table-summary">
+                            <tbody id="cartpagetotal">
+                                <!-- End .summary-total -->
+                            </tbody>
+                        </table><!-- End .table table-summary -->
+
+                        <span id="cartpagebutton"></span>
+
+
+                    </div><!-- End .summary -->
+
+                    <a href="{% url 'AllProducts' %}" class="btn btn-outline-dark-2 btn-block mb-3"><span>CONTINUE
+                            SHOPPING</span><i class="icon-refresh"></i></a>
+                </aside><!-- End .col-lg-3 -->
+            </div><!-- End .row -->
+        </div><!-- End .container -->
+    </div><!-- End .cart -->
+</div><!-- End .page-content -->
+
+
+
+{% endblock %}

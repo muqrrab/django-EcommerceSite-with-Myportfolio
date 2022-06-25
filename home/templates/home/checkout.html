@@ -1,0 +1,256 @@
+{% extends 'home/layout.html' %}
+
+{% load static %}
+{% block content %}
+
+<style>
+    .hide {
+        display: none;
+    }
+</style>
+
+
+<div class="hide" id="thanks">
+    <div class="page-header text-center" style="background-image: url('assets/images/page-header-bg.jpg')">
+        <div class="container">
+            <h1 class="page-title">Thanks<span>for your time</span></h1>
+        </div><!-- End .container -->
+    </div><!-- End .page-header -->
+    <div class="text-center" style="padding:100px 0 ;">
+        <h3>Thanks for your order</h3>
+        <h5></h5>
+        <a href="{% url 'AllProducts' %}" class="btn btn-outline-primary-2 btn-order">Shop More</a>
+    </div>
+</div>
+
+
+<div class="" id="finalcheckout">
+    <div class="page-header text-center" style="background-image: url('assets/images/page-header-bg.jpg')">
+        <div class="container">
+            <h1 class="page-title">Checkout<span>Shop</span></h1>
+        </div><!-- End .container -->
+    </div><!-- End .page-header -->
+    {% if carttotal == 0 %}
+    <div class="text-center" style="padding:100px 0 ;">
+        <h3>Your cart is empty.</h3>
+        <h5>Add to cart Something to proceed to checkout</h5>
+        <a href="{% url 'AllProducts' %}" class="btn btn-outline-primary-2 btn-order">Shop</a>
+    </div>
+    {% else %}
+    <div class="page-content">
+        <div class="checkout">
+            <div class="container mt-2">
+
+                <form id="form">
+                    <div class="row">
+                        <div class="col-lg-9">
+                            <h2 class="checkout-title">Billing Details</h2><!-- End .checkout-title -->
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <label>Full Name *</label>
+                                    <input name="name" type="text" class="form-control" required>
+                                </div><!-- End .col-sm-6 -->
+
+                                <div class="col-sm-6">
+                                    <label>Email address *</label>
+                                    <input name="email" type="email" class="form-control" required>
+                                </div><!-- End .col-sm-6 -->
+                            </div><!-- End .row -->
+
+                            <label>Street address *</label>
+                            <input type="text" name="address" class="form-control"
+                                placeholder="House number, Street name and unit etc ..." required>
+
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <label>Town / City *</label>
+                                    <input name="city" type="text" class="form-control" required>
+                                </div><!-- End .col-sm-6 -->
+
+                                <div class="col-sm-6">
+                                    <label>State *</label>
+                                    <input name="state" type="text" class="form-control" required>
+                                </div><!-- End .col-sm-6 -->
+                            </div><!-- End .row -->
+
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <label>Postcode / ZIP *</label>
+                                    <input name="zip" type="text" class="form-control" required>
+                                </div><!-- End .col-sm-6 -->
+
+                                <div class="col-sm-6">
+                                    <label>Phone *</label>
+                                    <input name="phone" type="tel" class="form-control" required>
+                                </div><!-- End .col-sm-6 -->
+                            </div><!-- End .row -->
+
+                        </div><!-- End .col-lg-9 -->
+                        <aside class="col-lg-3">
+                            <div class="summary">
+                                <h3 class="summary-title">Your Order</h3><!-- End .summary-title -->
+
+                                <table class="table table-summary">
+                                    <thead>
+                                        <tr>
+                                            <th>Product</th>
+                                            <th>Total</th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+                                        {% for i in items %}
+                                        <tr>
+                                            <td><a href="{% url 'Productview' i.product.name %}">{{i.product.name}}</a>
+                                            </td>
+                                            <td>{{i.get_total}}</td>
+                                        </tr>
+                                        {% endfor %}
+
+                                        <tr class="summary-subtotal">
+                                            <td>Subtotal:</td>
+                                            <td>Rs. {{order.get_cart_total}}</td>
+                                        </tr><!-- End .summary-subtotal -->
+                                        <tr>
+                                            <td>Shipping:</td>
+                                            <td>Rs. 200</td>
+                                        </tr>
+                                        <tr class="summary-total">
+                                            <td>Total:</td>
+                                            <td>Rs. {{stotal}}</td>
+                                        </tr><!-- End .summary-total -->
+                                    </tbody>
+                                </table><!-- End .table table-summary -->
+
+                                <div id="notchecked"></div>
+
+                                <div class="accordion-summary" id="accordion-payment">
+                                    <div class="card">
+                                        <div class="card-header" id="heading-1">
+                                            <h2 class="card-title">
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="radio" name="flexRadioDefault"
+                                                        id="jazz">
+                                                    <label class="form-check-label" for="jazz">
+                                                        JazzCash
+                                                    </label>
+                                                </div>
+                                            </h2>
+                                        </div><!-- End .card-header -->
+                                    </div><!-- End .card -->
+
+
+                                    <div class="card mt-2">
+                                        <div class="card-header" id="heading-3">
+                                            <h2 class="card-title">
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="radio" name="flexRadioDefault"
+                                                        id="cash">
+                                                    <label class="form-check-label" for="cash">
+                                                        Cash on Delivery
+                                                    </label>
+                                                </div>
+                                            </h2>
+                                        </div><!-- End .card-header -->
+                                    </div><!-- End .card -->
+                                </div><!-- End .accordion -->
+
+                                <button type="submit" id="placeorderbtn"
+                                    class="btn btn-outline-primary-2 btn-order btn-block">
+                                    <span class="btn-text">Place Order</span>
+                                    <span class="btn-hover-text">Proceed to Checkout</span>
+                                </button>
+                            </div><!-- End .summary -->
+                        </aside><!-- End .col-lg-3 -->
+                    </div><!-- End .row -->
+                </form>
+            </div><!-- End .container -->
+        </div><!-- End .checkout -->
+    </div><!-- End .page-content -->
+    {% endif %}
+
+</div>
+<!-- <script src="{% static 'js/jquery.min.js' %}"></script> -->
+
+<script>
+
+    // var value = $('input[name="flexRadioDefault"]:checked').val();
+
+    // alert(selected.value);
+
+
+
+    var total = '{{stotal}}'
+
+    var form = document.getElementById('form')
+
+    form.addEventListener('submit', function (e) {
+        e.preventDefault()
+    })
+
+    document.getElementById('placeorderbtn').addEventListener('click', function (e) {
+        var radios = document.getElementsByName("flexRadioDefault");
+
+        for (i = 0; i < radios.length; i++) {
+            if (radios[i].checked) {
+                if (radios[i].id == 'cash') {
+                    submitFormData()
+                }
+                else {
+                    alert('Jazzcash is not configured yet')
+                }
+                document.getElementById('notchecked').innerHTML = ''
+            }
+            else {
+                document.getElementById('notchecked').innerHTML = '<span style="color:red;">Please check one of the following</span>'
+            }
+
+        }
+    })
+    function submitFormData() {
+        document.getElementById('thanks').classList.remove('hide')
+        document.getElementById('finalcheckout').classList.add('hide')
+
+        var shippingInfo = {
+            'total': total,
+            'name': form.name.value,
+            'email': form.email.value,
+            'address': form.address.value,
+            'city': form.city.value,
+            'state': form.state.value,
+            'zip': form.zip.value,
+            'phone': form.phone.value,
+        }
+
+        var url = '/process_order/'
+
+        fetch(url, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "X-CSRFToken": csrftoken,
+            },
+            body: JSON.stringify({ 'shippingform': shippingInfo }),
+        })
+
+            .then((response) => {
+                return response.json();
+            })
+
+            .then((data) => {
+                cart = {}
+                document.cookie = 'cart=' + JSON.stringify(cart) + ";domain=;path=/"
+
+
+
+                console.log('Congrats')
+                // window.location.href = "{% url 'AllProducts' %}"
+
+            });
+    }
+
+
+
+</script>
+
+{% endblock %}

@@ -1,0 +1,63 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/bootstraps.min.css' %}">
+
+<!-- <script src="{% static 'js/jquery.min.js' %}"></script>
+
+<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script> -->
+<style>
+    .hide {
+        display: none;
+    }
+</style>
+
+<div class="container-fluid" id="first">
+    <div class="row">
+        <div class="col-2 bg-success pt-2" style="color: white;">
+            <h3 class="text-center">Admin Panel</h3>
+            <hr>
+            <a href="#" style="text-decoration:none; color:white;">
+                <h4>Orders</h4>
+            </a>
+
+
+        </div>
+
+        <div class="col-9 pt-2">
+            <table class="table table-striped-columns">
+                <thead>
+                    <th>Id</th>
+                    <th>Date</th>
+                    <th>TransactionId</th>
+                    <th>Address</th>
+                    <th>Items</th>
+                </thead>
+                <tbody>
+                    {% for i in order %}
+                    <tr>
+                        <td><a href="#" onclick="">{{i.id}}</a></td>
+                        <td> {{i.date_ordered}} </td>
+                        <td> {{i.transaction_id}} </td>
+                        <td>
+                            {% for j in address %}
+                            {% if i.id == j.order.id %}
+                            {{j.name}}, {{j.email}} <br>
+                            {{j.address}},<br>
+                            {{j.city}}, {{j.state}} <br>
+                            {{j.zipcode}}, {{j.phone}}
+                            {% endif %}
+                            {% endfor %}
+                        </td>
+                        <td>
+                            {% for j in orderitems %}
+                            {% if i.id == j.order.id %}
+                            ({{j.quantity}}) {{j.product.name}} <br>
+                            {% endif %}
+                            {% endfor %}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
