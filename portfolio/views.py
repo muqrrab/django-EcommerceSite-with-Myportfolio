@@ -1,5 +1,4 @@
 import json
-from unicodedata import name
 from django.http import JsonResponse
 from django.shortcuts import redirect, render
 import mimetypes
@@ -37,9 +36,6 @@ def df(request, filename='Resume.pdf'):
         # Load the template
         return render(request, 'Resume.pdf')
 
-def contact(request):
-    return redirect(index)
-
 def formsubmission(request):
     # if request.method == 'POST':
     #     name = request.POST.get('InputName')
@@ -60,4 +56,4 @@ def formsubmission(request):
         subject = subject,
         message= msg
     )
-    return JsonResponse('Payment Complete', safe=False)
+    return JsonResponse('Complete', safe=False)

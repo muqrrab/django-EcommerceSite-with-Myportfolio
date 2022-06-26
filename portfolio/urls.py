@@ -4,8 +4,7 @@ from . import views
 
 urlpatterns = [
     path('', views.index, name="home"),
-    path('df', views.df, name="df"),
-    path('contact/', views.contact, name="contact"),
+    path('resume', views.df, name="df"),
     path('formsubmission/', views.formsubmission, name="formsubmission"),
     # re_path(r"^home/", include("home.urls"),name="home"),
 ]
