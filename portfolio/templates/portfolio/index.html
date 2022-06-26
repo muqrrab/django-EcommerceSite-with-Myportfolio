@@ -136,7 +136,7 @@
                                 <p class="mb-0">Email: <span class="text-dark">muqrrab041@gmail.com</span></p>
                             </div>
                         </div>
-                        <a id="resume" class="btn btn-default mr-3" style="color: white;"><i class="icon-cloud-download"></i>Download CV</a>
+                        <a href="{% url 'df' %}" class="btn btn-default mr-3" style="color: white;"><i class="icon-cloud-download"></i>Download CV</a>
                         <a href="#contact" class="btn btn-alt mt-2 mt-md-0 mt-xs-2"><i class="icon-envelope"></i>Hire me</a>
                     </div>
                 </div>
@@ -767,25 +767,6 @@
             form.subject.value = ''
             form.message.value = ''
         }
-
-
-
-
-        document.getElementById('resume').addEventListener('click', function(){
-            resume()
-        })
-
-        function resume() {
-                $.ajax({
-                    url: "/resume",
-                    type: "GET",
-                    // dataType: "json",
-                    success: function (dic) {
-                    },
-                });
-            }
-
-
         
         // $(document).ready(function () {
         //         $("#description_save").click(function () {
